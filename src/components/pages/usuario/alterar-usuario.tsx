@@ -10,6 +10,7 @@ function AlterarUsuario() {
   useEffect(() => {
     if (id) {
       carregarUsuario(id);
+      // text
     }
   }, [id]);
 
