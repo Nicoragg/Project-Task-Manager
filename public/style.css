@@ -1,0 +1,162 @@
+/* Estilos para inputs */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+    border-color: #66afe9;
+    outline: none;
+}
+
+/* Estilos para botões */
+input[type="submit"], input[type="button"], button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover, button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos para cabeçalhos de tabela */
+thead {
+    background-color: #4CAF50;
+    color: white;
+}
+
+thead th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+/* Estilos para o contêiner de navegação */
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+/* Estilos para a lista não ordenada dentro da navegação */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centraliza os itens na horizontal */
+}
+
+/* Estilos para os itens da lista */
+nav ul li {
+    display: inline;
+}
+
+/* Estilos para os links de navegação */
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Efeito de hover nos links */
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+/* Efeito de ativo no link */
+nav ul li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Responsividade para dispositivos móveis */
+@media screen and (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+    nav ul li {
+        text-align: center;
+        width: 100%;
+    }
+    nav ul li a {
+        padding: 14px;
+        border-top: 1px solid #ddd;
+    }
+    nav ul li a:hover {
+        background-color: #575757;
+    }
+}
+
+/* Responsividade para dispositivos móveis */
+@media screen and (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    th {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    tr {
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+    }
+    td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
