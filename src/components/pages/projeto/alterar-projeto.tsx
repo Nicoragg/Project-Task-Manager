@@ -51,7 +51,6 @@ function AlterarProjeto() {
 
   return (
     <div>
-      <link rel="stylesheet" href="style.css" />
       <h1>Alterar Projeto</h1>
       <form onSubmit={handleSubmit}>
         <label>Nome:</label>

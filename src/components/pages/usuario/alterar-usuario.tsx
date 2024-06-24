@@ -10,7 +10,7 @@ function AlterarUsuario() {
   useEffect(() => {
     if (id) {
       carregarUsuario(id);
-      // text
+      // tex
     }
   }, [id]);
 
@@ -53,7 +53,7 @@ function AlterarUsuario() {
   }
 
   return (
-    <>
+    <div>
       <h1>Alterar Usuário</h1>
       <form onSubmit={alterar}>
         <label>Nome:</label>
@@ -64,7 +64,7 @@ function AlterarUsuario() {
         <br />
         <button type="submit">Alterar</button>
       </form>
-    </>
+    </div>
   );
 }
 

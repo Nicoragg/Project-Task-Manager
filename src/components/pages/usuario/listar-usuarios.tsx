@@ -38,7 +38,6 @@ function ListarUsuarios() {
 
   return (
     <div>
-      <link rel="stylesheet" href="/public/style.css" />
       <h1>Listar Usuários</h1>
       <table className='table'>
         <thead>

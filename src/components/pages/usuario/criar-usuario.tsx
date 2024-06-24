@@ -30,7 +30,6 @@ function CriarUsuario() {
 
   return (
     <div>
-      <link rel="stylesheet" href="../../../../public/style.css" />
       <h1>Criar Usuário</h1>
       <form className='' onSubmit={criar}>
         <label>Nome:</label>

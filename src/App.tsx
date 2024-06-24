@@ -13,6 +13,7 @@ import ListarTarefasPorPrioridade from './components/pages/tarefa/listar-tarefas
 import ListarTarefasPorProjeto from './components/pages/tarefa/listar-tarefas-projeto';
 import { AppBar, Toolbar, Typography, Button, Container } from '@mui/material';
 import logo from './imagens/logo.jpg'; // Certifique-se de ajustar o caminho conforme necessário
+import Home from './components/pages/home/home';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
     <BrowserRouter>
       <AppBar position="static">          
         <Toolbar>
-          <Button color="inherit" component={Link} to="/home">Home</Button>
+          <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/usuario/criar">Criar Usuário</Button>
           <Button color="inherit" component={Link} to="/usuario/listar">Listar Usuários</Button>
           <Button color="inherit" component={Link} to="/projeto/criar">Criar Projeto</Button>
@@ -37,9 +38,8 @@ function App() {
         </Toolbar>
       </AppBar>
         <Routes>
-          {/* <Route path="/" element={<Typography variant="h4" component="h1" gutterBottom>
-            <img src={logo} alt="Logo" width={950}/> */}
-          <Route path="/home" element={<CriarUsuario />} />
+
+          <Route path="/" element={<Home />} />
           <Route path="/usuario/criar" element={<CriarUsuario />} />
           <Route path="/usuario/listar" element={<ListarUsuarios />} />
           <Route path="/usuario/alterar/:id" element={<AlterarUsuario />} />
@@ -53,7 +53,7 @@ function App() {
           <Route path="/projeto/:projetoId/tarefas" element={<ListarTarefasPorProjeto />} />
         </Routes>
       <footer style={{ marginTop: '20px', textAlign: 'center' }}>
-        <h1>Desenvolvido por Nicolas e Laura</h1>
+        <h3>Desenvolvido por Nicolas e Laura &copy;</h3>
       </footer>
     </BrowserRouter>
   );
