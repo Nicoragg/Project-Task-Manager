@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Projeto } from '../../../models/Projeto';
+import { useNavigate } from 'react-router-dom';
 
 function CriarProjeto() {
   const [nome, setNome] = useState('');
-
-  async function criar() {
+  const navigate = useNavigate();
+  
+  async function criar(event: { preventDefault: () => void; } ) {
+    event.preventDefault();
     const projeto: Projeto = { nome };
 
     try {
@@ -22,8 +25,10 @@ function CriarProjeto() {
 
       const data = await response.json();
       console.log('Projeto criado:', data);
+      navigate('/projeto/listar');
     } catch (error) {
       console.error('Erro ao criar projeto:', error);
+      navigate('/projeto/listar');
     }
   }
 

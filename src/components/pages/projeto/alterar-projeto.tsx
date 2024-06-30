@@ -25,7 +25,7 @@ function AlterarProjeto() {
     }
   }
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function alterar(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const projeto: Projeto = { nome };
 
@@ -52,7 +52,7 @@ function AlterarProjeto() {
   return (
     <div>
       <h1>Alterar Projeto</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={alterar}>
         <label>Nome:</label>
         <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
         <br />

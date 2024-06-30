@@ -1,5 +1,37 @@
 /* Estilos para inputs */
-input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea {
+body, html {
+    margin: 0;
+    padding: 1px;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #000000;
+    text-align: center;
+    margin: 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    color: #3d3d3d;
+    text-align: center;
+    margin: 0.75rem 0;
+    letter-spacing: 1.5px;
+  }
+  
+  h3 {
+    font-size: 1rem;
+    color: #666;
+    text-align: center;
+    margin: 0.5rem 0;
+    letter-spacing: 1px;
+  }
+
+input[type="text"], input[type="email"], input [type="datetime-local"],input[type="password"], input[type="number"], select, textarea {
     width: 100%;
     padding: 10px;
     margin: 5px 0 15px 0;
@@ -11,14 +43,14 @@ input[type="text"], input[type="email"], input[type="password"], input[type="num
     transition: border-color 0.3s ease-in-out;
 }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+input[type="text"]:focus, input [type="datetime-local"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
     border-color: #5f6e7b;
     outline: none;
 }
 
 /* Estilos para botões */
 input[type="submit"], input[type="button"], button {
-    background-color: #574caf;
+    background-color: #0149ac;
     color: white;
     padding: 10px 20px;
     margin: 10px 0;
@@ -30,20 +62,20 @@ input[type="submit"], input[type="button"], button {
 }
 
 input[type="submit"]:hover, input[type="button"]:hover, button:hover {
-    background-color: #454ba0;
+    background-color: #0043a0;
 }
 
 /* Estilos para tabelas */
 table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     margin: 25px 0;
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
 }
 
 th, td {
-    padding: 12px;
+    padding: 1px;
     border: 1px solid #ddd;
 }
 
@@ -62,7 +94,7 @@ tr:hover {
 
 /* Estilos para cabeçalhos de tabela */
 thead {
-    background-color: #544caf;
+    background-color: rgb(107, 97, 215);
     color: white;
 }
 
@@ -72,7 +104,7 @@ thead th {
 }
 /* Estilos para o contêiner de navegação */
 nav {
-    background-color: #333;
+    background-color: #0149ac;
     overflow: hidden;
 }
 
@@ -92,22 +124,24 @@ nav ul li {
 
 /* Estilos para os links de navegação */
 nav ul li a {
+    background-color: #0149ac;
     display: block;
     color: white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: center;
     padding: 14px 20px;
     text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
 }
 
 /* Efeito de hover nos links */
 nav ul li a:hover {
-    background-color: #575757;
+    background-color: #0043a0;
+    transform: scale(1,1);
 }
 
 /* Efeito de ativo no link */
 nav ul li a.active {
-    background-color: #4CAF50;
+    background-color: #0149ac;
     color: white;
 }
 
@@ -158,5 +192,14 @@ nav ul li a.active {
         padding-left: 10px;
         font-weight: bold;
         text-align: left;
+    }
+    footer {
+        background-color: #2c2942;
+        color: rgb(255, 255, 255);
+        text-align: center;
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
     }
 }
