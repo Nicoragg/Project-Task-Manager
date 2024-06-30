@@ -45,6 +45,7 @@ function ListarProjetos() {
           <tr>
             <th>#</th>
             <th>Nome</th>
+            <th>Listar Tarefas</th>
             <th>Alterar</th>
             <th>Remover</th>
           </tr>
@@ -54,9 +55,14 @@ function ListarProjetos() {
             <tr key={projeto.id}>
               <td>{projeto.id}</td>
               <td>{projeto.nome}</td>
+
+              <td>
+                <Link to={`/projeto/${projeto.id}/tarefas`}>Listar</Link>
+              </td>
               <td>
                 <Link to={`/projeto/alterar/${projeto.id}`}>Alterar</Link>
               </td>
+              
               <td>
                 <button onClick={() => handleDelete(projeto.id!)}>Deletar</button>
               </td>

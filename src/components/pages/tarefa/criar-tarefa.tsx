@@ -51,9 +51,6 @@ function CriarTarefa() {
         <label>ID do Projeto:</label>
         <input type="text" value={projetoId} onChange={(e) => setProjetoId(e.target.value)} required />
         <br />
-        <label>Atribuições:</label>
-        <input type="text" value={atribuicoes} onChange={(e) => setAtribuicoes(e.target.value)} required />
-        <br />
         <button type="submit">Criar</button>
       </form>
     </div>
