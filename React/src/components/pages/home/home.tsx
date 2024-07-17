@@ -5,9 +5,13 @@ import task from './../../imagens/griltask.png';
 
 function Home() {
   return (
-    <div className='custom body'>
+    <div>
 
+      <div className='home'>
+        <img src={logo} alt="Task" width={700} />
+      </div>
       <main>
+        
         <section>
           <div className="column">            
             <p>

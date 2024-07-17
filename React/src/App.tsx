@@ -16,7 +16,7 @@ import Atribuir from './components/pages/tarefa/atribuir';
 import ListarNotificacoes from './components/pages/notificacao/listar-notificacoes';
 function App() {
   return (
-    <>
+    <main>
     <BrowserRouter>
       <nav>
         <ul>
@@ -54,7 +54,7 @@ function App() {
     </div>
 </footer>
     </BrowserRouter>
-  </>
+  </main>
   );
 }
 
