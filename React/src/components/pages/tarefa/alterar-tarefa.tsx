@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Tarefa } from '../../../models/Tarefa';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function AlterarTarefa() {
   const { id } = useParams<{ id: string }>();
@@ -9,7 +9,7 @@ function AlterarTarefa() {
   const [prazo, setPrazo] = useState('');
   const [prioridade, setPrioridade] = useState('');
   const [projetoId, setProjetoId] = useState('');
-  const [atribuicoes, setAtribuicoes] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -29,7 +29,6 @@ function AlterarTarefa() {
       setPrazo(data.prazo);
       setPrioridade(data.prioridade);
       setProjetoId(data.projetoId);
-      setAtribuicoes(data.atribuicoes);
     } catch (error) {
       console.error('Erro ao carregar tarefa:', error);
     }
@@ -37,10 +36,10 @@ function AlterarTarefa() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const tarefa: Tarefa = { titulo, descricao, prazo, prioridade, projetoId, atribuicoes};
+    const tarefa: Tarefa = { titulo, descricao, prazo, prioridade, projetoId };
 
     try {
-      const response = await fetch(`http://localhost:5251/api/tarefa/alterar/${id}`, {
+      const response = await fetch(`http://localhost:5028/api/tarefa/alterar/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -54,6 +53,9 @@ function AlterarTarefa() {
 
       const data = await response.json();
       console.log('Tarefa alterada:', data);
+
+      // Redirecionar para a tela de listar tarefas
+      navigate('/tarefa/listar');
     } catch (error) {
       console.error('Erro ao alterar tarefa:', error);
     }
@@ -61,7 +63,6 @@ function AlterarTarefa() {
 
   return (
     <div className='custom-body'>
-      
       <h1>Alterar Tarefa</h1>
       <form onSubmit={handleSubmit}>
         <label>Título:</label>
@@ -74,13 +75,14 @@ function AlterarTarefa() {
         <input type="datetime-local" value={prazo} onChange={(e) => setPrazo(e.target.value)} required />
         <br />
         <label>Prioridade:</label>
-        <input type="text" value={prioridade} onChange={(e) => setPrioridade(e.target.value)} required />
+        <select value={prioridade} onChange={(e) => setPrioridade(e.target.value)} required>
+          <option value="Baixa">Baixa</option>
+          <option value="Media">Média</option>
+          <option value="Alta">Alta</option>
+        </select>
         <br />
         <label>ID do Projeto:</label>
         <input type="text" value={projetoId} onChange={(e) => setProjetoId(e.target.value)} required />
-        <br />
-        <label>Atribuições:</label>
-        <input type="text" value={atribuicoes} onChange={(e) => setAtribuicoes(e.target.value)} required />
         <br />
         <button type="submit">Alterar</button>
       </form>

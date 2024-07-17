@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { Tarefa } from '../../../models/Tarefa';
+import { useNavigate } from 'react-router-dom';
 
 function CriarTarefa() {
   const [titulo, setTitulo] = useState('');
   const [descricao, setDescricao] = useState('');
   const [prazo, setPrazo] = useState('');
-  const [prioridade, setPrioridade] = useState('');
+  const [prioridade, setPrioridade] = useState('Baixa'); // Valor padrão inicial
   const [projetoId, setProjetoId] = useState('');
-  const [atribuicoes, setAtribuicoes] = useState('');
+  const navigate = useNavigate();
 
-  async function criar() {
-    const tarefa: Tarefa = { titulo, descricao, prazo, prioridade, projetoId, atribuicoes };
+  async function criar(event: React.FormEvent) {
+    event.preventDefault(); // Previne o comportamento padrão do formulário
+
+    const tarefa: Tarefa = { titulo, descricao, prazo, prioridade, projetoId };
+    console.log('Dados da tarefa:', tarefa); // Log para verificar os dados
 
     try {
       const response = await fetch('http://localhost:5028/api/tarefa/criar', {
@@ -22,11 +26,16 @@ function CriarTarefa() {
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Erro ao criar tarefa:', errorText);
         throw new Error('Erro ao criar tarefa');
       }
 
       const data = await response.json();
       console.log('Tarefa criada:', data);
+
+      // Redirecionar para a tela de listar tarefas
+      navigate('/tarefa/listar');
     } catch (error) {
       console.error('Erro ao criar tarefa:', error);
     }
@@ -46,7 +55,11 @@ function CriarTarefa() {
         <input type="datetime-local" value={prazo} onChange={(e) => setPrazo(e.target.value)} required />
         <br />
         <label>Prioridade:</label>
-        <input type="text" value={prioridade} onChange={(e) => setPrioridade(e.target.value)} required />
+        <select value={prioridade} onChange={(e) => setPrioridade(e.target.value)} required>
+          <option value="Baixa">Baixa</option>
+          <option value="Media">Média</option>
+          <option value="Alta">Alta</option>
+        </select>
         <br />
         <label>ID do Projeto:</label>
         <input type="text" value={projetoId} onChange={(e) => setProjetoId(e.target.value)} required />

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Usuario } from '../../../models/Usuario';
+import { useNavigate } from 'react-router-dom';
 
 function CriarUsuario() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
-  async function criar() {
+  async function criar(event: React.FormEvent) {
+    event.preventDefault(); // Previne o comportamento padrão do formulário
+
     const usuario: Usuario = { nome, email };
 
     try {
@@ -23,15 +27,17 @@ function CriarUsuario() {
 
       const data = await response.json();
       console.log('Usuário criado:', data);
+      navigate('/usuario/listar'); // Navegar para a página de listar usuários
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
+      navigate('/usuario/listar'); // Navegar para a página de listar usuários mesmo em caso de erro
     }
   }
 
   return (
     <div className='custom-body'>
       <h1>Criar Usuário</h1>
-      <form className='' onSubmit={criar}>
+      <form onSubmit={criar}>
         <label>Nome:</label>
         <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
         <br />

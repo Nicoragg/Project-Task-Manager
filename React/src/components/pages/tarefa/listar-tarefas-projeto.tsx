@@ -36,6 +36,7 @@ function ListarTarefasPorProjeto() {
             <th>Descrição</th>
             <th>Prazo</th>
             <th>Prioridade</th>
+            <th>ID do Projeto</th>
             <th>Atribuições</th>
           </tr>
         </thead>
@@ -47,7 +48,7 @@ function ListarTarefasPorProjeto() {
               <td>{tarefa.descricao}</td>
               <td>{tarefa.prazo}</td>
               <td>{tarefa.prioridade}</td>
-              <td>{tarefa.atribuicoes}</td>
+              <td>{tarefa.projetoId}</td>
             </tr>
           ))}
         </tbody>

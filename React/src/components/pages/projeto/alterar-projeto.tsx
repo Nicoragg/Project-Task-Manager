@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Projeto } from '../../../models/Projeto';
 
 function AlterarProjeto() {
   const { id } = useParams<{ id: string }>();
   const [nome, setNome] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -44,8 +45,10 @@ function AlterarProjeto() {
 
       const data = await response.json();
       console.log('Projeto alterado:', data);
+      navigate('/projeto/listar'); // Navegar para a página de listar projetos
     } catch (error) {
       console.error('Erro ao alterar projeto:', error);
+      navigate('/projeto/listar'); // Navegar para a página de listar projetos mesmo em caso de erro
     }
   }
 

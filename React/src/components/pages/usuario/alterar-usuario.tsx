@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Usuario } from '../../../models/Usuario';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function AlterarUsuario() {
   const { id } = useParams<{ id: string }>();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
       carregarUsuario(id);
-      // tex
     }
   }, [id]);
 
@@ -47,6 +47,9 @@ function AlterarUsuario() {
 
       const data = await response.json();
       console.log('Usuário alterado:', data);
+
+      // Redirecionar para a tela de listar usuários
+      navigate('/usuario/listar');
     } catch (error) {
       console.error('Erro ao alterar usuário:', error);
     }
@@ -54,18 +57,16 @@ function AlterarUsuario() {
 
   return (
     <div className='custom-body'>
-      <section>
-        <h1>Alterar Usuário</h1>
-        <form onSubmit={alterar}>
-          <label>Nome:</label>
-          <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
-          <br />
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-          <br />
-          <button type="submit">Alterar</button>
-        </form>
-      </section>
+      <h1>Alterar Usuário</h1>
+      <form onSubmit={alterar}>
+        <label>Nome:</label>
+        <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
+        <br />
+        <label>Email:</label>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <br />
+        <button type="submit">Alterar</button>
+      </form>
     </div>
   );
 }

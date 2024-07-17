@@ -13,6 +13,7 @@ import ListarTarefasPorPrioridade from './components/pages/tarefa/listar-tarefas
 import ListarTarefasPorProjeto from './components/pages/tarefa/listar-tarefas-projeto';
 import Home from './components/pages/home/home';
 import Atribuir from './components/pages/tarefa/atribuir';
+import ListarNotificacoes from './components/pages/notificacao/listar-notificacoes';
 function App() {
   return (
     <>
@@ -26,6 +27,7 @@ function App() {
           <li><Link to="/projeto/listar">LISTAR PROJETOS</Link></li>
           <li><Link to="/tarefa/criar">CRIAR TAREFA</Link></li>
           <li><Link to="/tarefa/listar">LISTAR TAREFAS</Link></li>
+          <li><Link to="/notificacoes">NOTIFICAÇÕES</Link></li>
         </ul>
       </nav>
         <Routes>
@@ -42,12 +44,15 @@ function App() {
           <Route path="/tarefa/prioridade/:prioridade" element={<ListarTarefasPorPrioridade />} />
           <Route path="/projeto/:projetoId/tarefas" element={<ListarTarefasPorProjeto />} />
           <Route path="/tarefa/atribuir/:tarefaId" element={<Atribuir />} />
+          <Route path="/notificacoes" element={<ListarNotificacoes />} />
         </Routes>
-      <footer>
-      <br /><br />
+        <footer>
+    <div className="footer-content">
         <h2>Desenvolvido por Nicolas e Laura &copy;</h2>
-        <br /><br />
-      </footer>
+        <p>2024 - Todos os direitos reservados</p>
+
+    </div>
+</footer>
     </BrowserRouter>
   </>
   );

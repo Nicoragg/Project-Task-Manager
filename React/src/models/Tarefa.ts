@@ -5,5 +5,4 @@ export interface Tarefa {
     prazo: string;
     prioridade: string;
     projetoId: string;
-    atribuicoes: string;
 }

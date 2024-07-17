@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 function ListarUsuarios() {
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+  const [idBusca, setIdBusca] = useState('');
+  const [usuarioEncontrado, setUsuarioEncontrado] = useState<Usuario | null>(null);
 
   useEffect(() => {
     carregarUsuarios();
@@ -19,6 +21,25 @@ function ListarUsuarios() {
       setUsuarios(data);
     } catch (error) {
       console.error('Erro ao carregar usuários:', error);
+    }
+  }
+
+  async function buscarUsuarioPorId() {
+    if (idBusca === '') {
+      setUsuarioEncontrado(null);
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5028/api/usuario/buscar/${idBusca}`);
+      if (!response.ok) {
+        throw new Error('Erro ao buscar usuário');
+      }
+      const data = await response.json();
+      setUsuarioEncontrado(data);
+    } catch (error) {
+      console.error('Erro ao buscar usuário:', error);
+      setUsuarioEncontrado(null);
     }
   }
 
@@ -39,32 +60,70 @@ function ListarUsuarios() {
   return (
     <div className='custom-body'>
       <h1>Listar Usuários</h1>
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Alterar</th>
-            <th>Remover</th>
-          </tr>
-        </thead>
-        <tbody className='table'>
-          {usuarios.map((usuario) => (
-            <tr key={usuario.id}>
-              <td>{usuario.id}</td>
-              <td>{usuario.nome}</td>
-              <td>{usuario.email}</td>
+      
+      <div>
+        <input
+          type="text"
+          placeholder="Buscar por ID"
+          value={idBusca}
+          onChange={(e) => setIdBusca(e.target.value)}
+        />
+        <button onClick={buscarUsuarioPorId}>Buscar</button>
+      </div>
+
+      {usuarioEncontrado ? (
+        <table className='table'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Alterar</th>
+              <th>Remover</th>
+            </tr>
+          </thead>
+          <tbody className='table'>
+            <tr>
+              <td>{usuarioEncontrado.id}</td>
+              <td>{usuarioEncontrado.nome}</td>
+              <td>{usuarioEncontrado.email}</td>
               <td>
-                <Link to={`/usuario/alterar/${usuario.id}`}>Alterar</Link>
+                <Link to={`/usuario/alterar/${usuarioEncontrado.id}`}>Alterar</Link>
               </td>
               <td>
-                <button onClick={() => Delete(usuario.id!)}>Deletar</button>
+                <button onClick={() => Delete(usuarioEncontrado.id!)}>Deletar</button>
               </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      ) : (
+        <table className='table'>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Alterar</th>
+              <th>Remover</th>
+            </tr>
+          </thead>
+          <tbody className='table'>
+            {usuarios.map((usuario) => (
+              <tr key={usuario.id}>
+                <td>{usuario.id}</td>
+                <td>{usuario.nome}</td>
+                <td>{usuario.email}</td>
+                <td>
+                  <Link to={`/usuario/alterar/${usuario.id}`}>Alterar</Link>
+                </td>
+                <td>
+                  <button onClick={() => Delete(usuario.id!)}>Deletar</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
